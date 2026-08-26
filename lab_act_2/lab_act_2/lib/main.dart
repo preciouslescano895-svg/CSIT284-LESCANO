@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
-
-void main () {
+import 'package:lab_act_2/dice_roller.dart';
+ 
+var currentDiceImage = 'assets/dice-images/dice-2.png';
+void rollDice(){
+  currentDiceImage = 'assets/dice-images/dice-4.png';
+}
+ 
+void main(){
   runApp(
     MaterialApp(
       home: Scaffold(
-        body: Container(
-          decoration:BoxDecoration(
-            gradient: LinearGradient(colors: [
-              Colors.pink,
-              Colors.black,
-            ])
-          ),
-          child: Center(
-            child: Text("Hello World"),
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [
+          const Color.fromARGB(255, 2, 2, 2),
+          const Color.fromARGB(255, 206, 35, 120),
+        ])  
+        ),
+        child: Center(
+          child: DiceRoller()
           ),
         ),
       ),
-    );
+    ),
+  );
 }

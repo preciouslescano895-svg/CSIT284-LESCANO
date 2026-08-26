@@ -1,56 +1,37 @@
 import 'package:flutter/material.dart';
-
  
-void main(){
+void main() {
   runApp(
     MaterialApp(
       home: Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-           Color.fromARGB(255, 73, 7, 189),
-           Color.fromARGB(255, 73, 6, 184),
-        ],
-      ),  
-    ),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset('assetss/logo.png',
-              width: 150,
+        body: Container(
+          decoration: BoxDecoration(
+          color: Color.fromARGB(255, 72, 0, 144),
+          ),
+          child: Center(
+            child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
+              Image.asset('assets/logo.png',
+              width: 180,
               ),
-                Text(
-                '? ? ?',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: const Color.fromARGB(255, 202, 185, 185),
-                ),
-              ),
-
-              const FlutterLogo(size: 100),
-              const SizedBox(height: 40),
-              const Text(
+              SizedBox(height: 30),
+              Text(
                 'Learn Flutter the fun way!',
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 202, 185, 185),
-                  fontSize: 20,
-                ),
+              style: TextStyle(
+              fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white,
               ),
-
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Start Quiz',
-                  style: TextStyle(color:const Color.fromARGB(255, 202, 185, 185),),
-                ),
               ),
-            ],
+              SizedBox(
+                height: 30),
+              ElevatedButton(onPressed: () {}, child: Text(
+                'Start Quiz',
+                style:TextStyle(fontSize:18)))
+              ],
+            ),
           ),
           ),
         ),
       ),
-    ),
   );
 }
+ 
+ 

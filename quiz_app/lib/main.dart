@@ -25,7 +25,7 @@ void main(){
                 '? ? ?',
                 style: TextStyle(
                   fontSize: 25,
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 202, 185, 185),
                 ),
               ),
 
@@ -34,7 +34,7 @@ void main(){
               const Text(
                 'Learn Flutter the fun way!',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 202, 185, 185),
                   fontSize: 20,
                 ),
               ),
@@ -43,7 +43,7 @@ void main(){
                 onPressed: () {},
                 child: const Text(
                   'Start Quiz',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color:const Color.fromARGB(255, 202, 185, 185),),
                 ),
               ),
             ],

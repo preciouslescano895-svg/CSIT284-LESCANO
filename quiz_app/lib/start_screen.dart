@@ -9,39 +9,74 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(context) {
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(
-            'assets/images/quiz-logo.png',
-            width: 300,
-            color: const Color.fromARGB(150, 255, 255, 255),
-          ),
-          // Opacity(
-          //   opacity: 0.6,
-          //   child: Image.asset(
-          //     'assets/images/quiz-logo.png',
-          //     width: 300,
-          //   ),
-          // ),
-          const SizedBox(height: 80),
-          Text(
-            'Learn Flutter the fun way!',
-            style: GoogleFonts.lato(
-              color: const Color.fromARGB(255, 237, 223, 252),
-              fontSize: 24,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFCFBF4),
+                borderRadius: BorderRadius.circular(25),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF4A3525).withOpacity(0.12),
+                    blurRadius: 12,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+              ),
+              child: Image.asset(
+                'assets/images/quiz-logo.png',
+                width: 220,
+                color: const Color(0xFF4A3525),
+              ),
             ),
-          ),
-          const SizedBox(height: 30),
-          OutlinedButton.icon(
-            onPressed: startQuiz,
-            style: OutlinedButton.styleFrom(
-              foregroundColor: Colors.white,
+            const SizedBox(height: 40),
+            Text(
+              'Learn Flutter the fun way!',
+              style: GoogleFonts.lato(
+                color: const Color(0xFF4A3525),
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-            icon: const Icon(Icons.arrow_right_alt),
-            label: const Text('Start Quiz'),
-          )
-        ],
+            const SizedBox(height: 12),
+            Text(
+              'Test what you learned and have fun answering!',
+              style: GoogleFonts.lato(
+                color: const Color(0xFF4A3525).withOpacity(0.75),
+                fontSize: 15,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+            ElevatedButton.icon(
+              onPressed: startQuiz,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF4A3525),
+                foregroundColor: const Color(0xFFFCFBF4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 28,
+                  vertical: 14,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+              icon: const Icon(Icons.arrow_forward_rounded),
+              label: const Text(
+                'Start Quiz',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

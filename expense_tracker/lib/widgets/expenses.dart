@@ -30,11 +30,18 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  // ADDITIONAL FEATURE:
+  // Search text and selected category filter
+  String _searchText = '';
+  Category? _selectedFilterCategory;
+
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
-      builder: (ctx) => NewExpense(onAddExpense: _addExpense),
+      builder: (ctx) => NewExpense(
+        onAddExpense: _addExpense,
+      ),
     );
   }
 
@@ -46,10 +53,13 @@ class _ExpensesState extends State<Expenses> {
 
   void _removeExpense(Expense expense) {
     final expenseIndex = _registeredExpenses.indexOf(expense);
+
     setState(() {
       _registeredExpenses.remove(expense);
     });
+
     ScaffoldMessenger.of(context).clearSnackBars();
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 3),
@@ -58,7 +68,10 @@ class _ExpensesState extends State<Expenses> {
           label: 'Undo',
           onPressed: () {
             setState(() {
-              _registeredExpenses.insert(expenseIndex, expense);
+              _registeredExpenses.insert(
+                expenseIndex,
+                expense,
+              );
             });
           },
         ),
@@ -66,16 +79,52 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+  // ADDITIONAL FEATURE:
+  // Filters expenses based on search and category
+  List<Expense> get _filteredExpenses {
+    return _registeredExpenses.where((expense) {
+      final matchesSearch = expense.title
+          .toLowerCase()
+          .contains(_searchText.toLowerCase());
+
+      final matchesCategory =
+          _selectedFilterCategory == null ||
+              expense.category == _selectedFilterCategory;
+
+      return matchesSearch && matchesCategory;
+    }).toList();
+  }
+
+  // ADDITIONAL FEATURE:
+  // Calculates total amount of displayed expenses
+  double get _totalExpenses {
+    double total = 0;
+
+    for (final expense in _filteredExpenses) {
+      total += expense.amount;
+    }
+
+    return total;
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget mainContent = const Center(
-      child: Text('No expenses found. Start adding some!'),
+      child: Text(
+        'No expenses found. Start adding some!',
+      ),
     );
 
-    if (_registeredExpenses.isNotEmpty) {
+    if (_filteredExpenses.isNotEmpty) {
       mainContent = ExpensesList(
-        expenses: _registeredExpenses,
+        expenses: _filteredExpenses,
         onRemoveExpense: _removeExpense,
+      );
+    } else if (_registeredExpenses.isNotEmpty) {
+      mainContent = const Center(
+        child: Text(
+          'No matching expenses found.',
+        ),
       );
     }
 
@@ -91,7 +140,132 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          Chart(expenses: _registeredExpenses),
+          Chart(
+            expenses: _registeredExpenses,
+          ),
+
+          // SEARCH BAR
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 4,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Search expenses',
+                hintText: 'Enter expense title',
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onChanged: (value) {
+                setState(() {
+                  _searchText = value;
+                });
+              },
+            ),
+          ),
+
+          const SizedBox(height: 8),
+
+          // CATEGORY FILTER
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.filter_list),
+
+                const SizedBox(width: 8),
+
+                const Text(
+                  'Filter:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                const SizedBox(width: 12),
+
+                Expanded(
+                  child: DropdownButton<Category?>(
+                    value: _selectedFilterCategory,
+                    isExpanded: true,
+                    hint: const Text('All Categories'),
+                    items: [
+                      const DropdownMenuItem<Category?>(
+                        value: null,
+                        child: Text('All Categories'),
+                      ),
+                      ...Category.values.map(
+                        (category) {
+                          return DropdownMenuItem<Category?>(
+                            value: category,
+                            child: Text(
+                              category.name.toUpperCase(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedFilterCategory = value;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // TOTAL EXPENSE DISPLAY
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              16,
+              8,
+              16,
+              8,
+            ),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.account_balance_wallet,
+                    ),
+
+                    const SizedBox(width: 10),
+
+                    const Text(
+                      'Total:',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const Spacer(),
+
+                    Text(
+                      '\$${_totalExpenses.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
           Expanded(
             child: mainContent,
           ),

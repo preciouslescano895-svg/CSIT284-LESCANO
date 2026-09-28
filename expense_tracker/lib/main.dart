@@ -2,63 +2,84 @@ import 'package:flutter/material.dart';
 
 import 'package:expense_tracker/widgets/expenses.dart';
 
+// Custom colors
+const kRosewood = Color.fromARGB(255, 160, 137, 129);
+const kLightTaupe = Color.fromARGB(255, 208, 200, 189);
+
 var kColorScheme = ColorScheme.fromSeed(
-  seedColor: const Color.fromARGB(255, 96, 59, 181),
+  seedColor: kRosewood,
 );
 
 var kDarkColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
-  seedColor: const Color.fromARGB(255, 5, 99, 125),
+  seedColor: kRosewood,
 );
 
 void main() {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
+
       darkTheme: ThemeData.dark().copyWith(
-        useMaterial3: true,
         colorScheme: kDarkColorScheme,
-        cardTheme: const CardTheme().copyWith(
+
+        appBarTheme: const AppBarThemeData(
+          backgroundColor: kRosewood,
+          foregroundColor: Colors.white,
+        ),
+
+        cardTheme: const CardThemeData().copyWith(
           color: kDarkColorScheme.secondaryContainer,
           margin: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 8,
           ),
         ),
+
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: kDarkColorScheme.primaryContainer,
-            foregroundColor: kDarkColorScheme.onPrimaryContainer,
+            backgroundColor: kRosewood,
+            foregroundColor: Colors.white,
           ),
         ),
       ),
+
       theme: ThemeData().copyWith(
-        useMaterial3: true,
         colorScheme: kColorScheme,
-        appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: kColorScheme.onPrimaryContainer,
-          foregroundColor: kColorScheme.primaryContainer,
+
+        scaffoldBackgroundColor: kLightTaupe,
+
+        appBarTheme: const AppBarThemeData(
+          backgroundColor: kRosewood,
+          foregroundColor: Colors.white,
         ),
-        cardTheme: const CardTheme().copyWith(
-          color: kColorScheme.secondaryContainer,
+
+        cardTheme: const CardThemeData().copyWith(
+          color: const Color.fromARGB(255, 235, 228, 221),
           margin: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 8,
           ),
         ),
+
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: kColorScheme.primaryContainer,
+            backgroundColor: kRosewood,
+            foregroundColor: Colors.white,
           ),
         ),
+
         textTheme: ThemeData().textTheme.copyWith(
-              titleLarge: TextStyle(
+              titleLarge: const TextStyle(
                 fontWeight: FontWeight.bold,
-                color: kColorScheme.onSecondaryContainer,
+                color: Color.fromARGB(255, 85, 67, 61),
                 fontSize: 16,
               ),
             ),
       ),
-      // themeMode: ThemeMode.system, // default
+
+      themeMode: ThemeMode.system,
+
       home: const Expenses(),
     ),
   );

@@ -12,11 +12,11 @@ void main() {
       theme: ThemeData().copyWith(
         useMaterial3: true,
         colorScheme: kColorScheme,
-        appBarTheme: const AppBarTheme().copyWith(
+        appBarTheme: const AppBarThemeData().copyWith(
           backgroundColor: kColorScheme.onPrimaryContainer,
           foregroundColor: kColorScheme.primaryContainer,
         ),
-        cardTheme: const CardTheme().copyWith(
+        cardTheme: const CardThemeData().copyWith(
           color: kColorScheme.secondaryContainer,
           margin: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -30,9 +30,9 @@ void main() {
         ),
         textTheme: ThemeData().textTheme.copyWith(
               titleLarge: TextStyle(
-                fontWeight: FontWeight.normal,
+                fontWeight: FontWeight.bold,
                 color: kColorScheme.onSecondaryContainer,
-                fontSize: 14,
+                fontSize: 16,
               ),
             ),
       ),

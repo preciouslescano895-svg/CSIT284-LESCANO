@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const cream = Color(0xFFFCF5EE);
+  // Brown
+  static const brown = Color(0xFF563624);
 
-  // Pantone 19-1650 TCX - Rouge Noir
-  static const rougeNoir = Color(0xFF5B0D18);
+  // Cream
+  static const cream = Color(0xFFD5C4A1);
 
-  // Pantone 19-5411 TCX - Blue Coral
-  static const blueCoral = Color(0xFF08383A);
+  // Sage
+  static const sage = Color(0xFF64786E);
 
-  // Pantone 17-1145 TCX - Cognac
-  static const cognac = Color(0xFF8A4E2A);
+  // Plum
+  static const plum = Color(0xFF53283E);
 
-  // Pantone 13-0002 TCX - White Sand
-  static const whiteSand = Color(0xFFE7E3DD);
+  // Wine
+  static const wine = Color(0xFF512027);
+
+  // Dark Green
+  static const darkGreen = Color(0xFF1E2A20);
+
+  // Readable text colors
+  static const lightText = Color(0xFFD5C4A1);
+  static const darkText = Color(0xFF1E2A20);
 }

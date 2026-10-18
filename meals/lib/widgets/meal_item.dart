@@ -52,7 +52,9 @@ class MealItem extends StatelessWidget {
               left: 0,
               right: 0,
               child: Container(
-                color: AppColors.blueCoral.withOpacity(0.90),
+                color: AppColors.blueCoral.withValues(
+                  alpha: 0.90,
+                ),
                 padding: const EdgeInsets.symmetric(
                   vertical: 8,
                   horizontal: 30,

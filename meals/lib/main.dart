@@ -20,8 +20,6 @@ final theme = ThemeData(
     onTertiary: AppColors.cream,
     surface: AppColors.cream,
     onSurface: AppColors.blueCoral,
-    background: AppColors.cream,
-    onBackground: AppColors.blueCoral,
   ),
   textTheme: GoogleFonts.latoTextTheme().apply(
     bodyColor: AppColors.blueCoral,

@@ -3,6 +3,7 @@ import 'package:transparent_image/transparent_image.dart';
 
 import 'package:meals/widgets/meal_item_trait.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/theme/app_colors.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
@@ -29,10 +30,10 @@ class MealItem extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.all(8),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(12),
       ),
       clipBehavior: Clip.hardEdge,
-      elevation: 2,
+      elevation: 3,
       child: InkWell(
         onTap: () {
           onSelectMeal(meal);
@@ -51,9 +52,11 @@ class MealItem extends StatelessWidget {
               left: 0,
               right: 0,
               child: Container(
-                color: Colors.black54,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 6, horizontal: 44),
+                color: AppColors.blueCoral.withOpacity(0.90),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 30,
+                ),
                 child: Column(
                   children: [
                     Text(
@@ -61,11 +64,11 @@ class MealItem extends StatelessWidget {
                       maxLines: 2,
                       textAlign: TextAlign.center,
                       softWrap: true,
-                      overflow: TextOverflow.ellipsis, // Very long text ...
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: AppColors.cream,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -85,13 +88,13 @@ class MealItem extends StatelessWidget {
                         MealItemTrait(
                           icon: Icons.attach_money,
                           label: affordabilityText,
-                        )
+                        ),
                       ],
                     ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

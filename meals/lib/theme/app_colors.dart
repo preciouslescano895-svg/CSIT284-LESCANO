@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Brown
-  static const brown = Color(0xFF563624);
+  // Textured Plaster - light background
+  static const cream = Color(0xFFAC998B);
 
-  // Cream
-  static const cream = Color(0xFFD5C4A1);
+  // Dark Walnut
+  static const rougeNoir = Color(0xFF402824);
 
-  // Sage
-  static const sage = Color(0xFF64786E);
+  // Olive Leather
+  static const blueCoral = Color(0xFF43392D);
 
-  // Plum
-  static const plum = Color(0xFF53283E);
+  // Antique Brass
+  static const cognac = Color(0xFF755844);
 
-  // Wine
-  static const wine = Color(0xFF512027);
-
-  // Dark Green
-  static const darkGreen = Color(0xFF1E2A20);
-
-  // Readable text colors
-  static const lightText = Color(0xFFD5C4A1);
-  static const darkText = Color(0xFF1E2A20);
+  // Light plaster for cards and light text
+  static const whiteSand = Color(0xFFD4C8BE);
 }
